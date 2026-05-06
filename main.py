@@ -12,6 +12,8 @@ from langchain_core.messages import HumanMessage
 from langchain_anthropic import ChatAnthropic as Anthropic
 from tavily import TavilyClient
 
+from .models import AgentResponse
+
 load_dotenv()
 
 tavily = TavilyClient()
@@ -32,7 +34,10 @@ def search(query: str) -> str:
 
 llm = Anthropic(model="claude-2", temperature=0.7)
 tools = [search]
-agent = create_agent(model=llm, tools=tools)
+agent = create_agent(
+    model=llm,
+    tools=tools,
+    response_format=AgentResponse)
 
 def main():
     print("Hello from langchain-langgraph!")
