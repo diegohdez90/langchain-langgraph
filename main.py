@@ -10,9 +10,11 @@ from langchain.agents import create_agent
 from langchain.tools import tool
 from langchain_core.messages import HumanMessage
 from langchain_anthropic import ChatAnthropic as Anthropic
-
+from tavily import TavilyClient
 
 load_dotenv()
+
+tavily = TavilyClient()
 
 @tool
 def search(query: str) -> str:
@@ -25,7 +27,7 @@ def search(query: str) -> str:
     """
 
     print(f"Searching for: {query}")
-    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    return tavily.search(query=query, limit=5)
 
 
 llm = Anthropic(model="claude-2", temperature=0.7)
