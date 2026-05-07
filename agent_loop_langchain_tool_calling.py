@@ -115,6 +115,8 @@ def run_agent(question: str):
     print(
         "ERROR: MAX_ITERATIONS reached without a final answer"
     )
+    
+    return None
 
 
 if __name__ == "__main__":
