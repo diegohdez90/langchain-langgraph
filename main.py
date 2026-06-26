@@ -1,9 +1,11 @@
 """Main module for the program.
 """
-import os
-from getp import getpass
-from langchain.core.prompts import PromptTemplate
-from langchain.anthropic import ChatAnthropic as Anthropic
+from dotenv import load_dotenv
+from getpass import getpass
+from langchain_core.prompts import PromptTemplate
+from langchain_anthropic import ChatAnthropic as Anthropic
+
+load_dotenv()
 
 
 INFORMATION = """
@@ -52,9 +54,6 @@ Given the information {INFORMATION} I want you create:
 1. A short summary of the information provided.
 2. 3 interesting facts about Dennis M. Ritchie.
 """
-
-os.environ["LANGSMITH_API_KEY"] = getpass.getpass("Enter your LangSmith API key: ")
-os.environ["LANGSMITH_TRACING"] = "true"
 
 
 def main():
